@@ -1,36 +1,15 @@
-import {
-  AppBar,
-  Button,
-  Grid,
-  IconButton,
-  Paper,
-  Toolbar,
-  Typography,
-} from "@material-ui/core";
-import DeleteIcon from "@material-ui/icons/Delete";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { Main } from "./components/Main";
 
-import React from "react";
-import "./App.css";
-
-function App() {
+const App: React.FC = () => {
   return (
-    <Grid container direction="column">
-      <Grid item>
-        <Grid xs={12} item>
-          <AppBar>
-            <Toolbar>
-              {/* <Grid xs={1} item /> */}
-              <Typography>mabroordev</Typography>
-              <IconButton color="secondary">
-                <DeleteIcon />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-        </Grid>
-      </Grid>
-      <Grid item>content</Grid>
-    </Grid>
+    <div style={{ width: "100vw", height: "100vh", overflow: "hidden" }}>
+      <Header />
+      <Main />
+      <Footer />
+    </div>
   );
-}
+};
 
 export default App;
