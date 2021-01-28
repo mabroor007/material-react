@@ -1,8 +1,9 @@
+import { v4 as uuid } from "uuid";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 // Todo type
 export interface ITodo {
-  id: number;
+  id: string;
   title: string;
   completed: boolean;
   deleted: boolean;
@@ -21,24 +22,44 @@ const TodoSlice = createSlice({
         completed: false,
         deleted: false,
         title: action.payload.title,
-        id: state.length,
+        id: uuid(),
       });
     },
-    removeTodo: (state, action: PayloadAction<{ id: number }>) => {
-      state[action.payload.id].deleted = true;
+    removeTodo: (state, action: PayloadAction<{ id: string }>) => {
+      state.forEach((todo) => {
+        if (todo.id === action.payload.id) {
+          todo.deleted = true;
+        }
+      });
     },
-    restoreTodo: (state, action: PayloadAction<{ id: number }>) => {
-      state[action.payload.id].deleted = false;
+    restoreTodo: (state, action: PayloadAction<{ id: string }>) => {
+      state.forEach((todo) => {
+        if (todo.id === action.payload.id) {
+          todo.deleted = false;
+        }
+      });
     },
-    unCompleteTodo: (state, action: PayloadAction<{ id: number }>) => {
-      state[action.payload.id].completed = false;
+    unCompleteTodo: (state, action: PayloadAction<{ id: string }>) => {
+      state.forEach((todo) => {
+        if (todo.id === action.payload.id) {
+          todo.completed = false;
+        }
+      });
     },
-    completedTodo: (state, action: PayloadAction<{ id: number }>) => {
-      state[action.payload.id].completed = true;
+    completedTodo: (state, action: PayloadAction<{ id: string }>) => {
+      state.forEach((todo) => {
+        if (todo.id === action.payload.id) {
+          todo.completed = true;
+        }
+      });
     },
-    permanentlyDeleteTodo:(state,action:PayloadAction<{ id: number }>) => {
-      state.splice(action.payload.id,1)
-    }
+    permanentlyDeleteTodo: (state, action: PayloadAction<{ id: string }>) => {
+      state.forEach((todo, idx) => {
+        if (todo.id === action.payload.id) {
+          state.splice(idx, 1);
+        }
+      });
+    },
   },
 });
 
@@ -52,7 +73,7 @@ export const {
   restoreTodo,
   completedTodo,
   unCompleteTodo,
-  permanentlyDeleteTodo
+  permanentlyDeleteTodo,
 } = TodoSlice.actions;
 
 // Creating async action
