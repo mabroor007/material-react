@@ -21,7 +21,7 @@ A simple todo like web application to keep track of the tasks
 
 #### Add Task
 
-<img src="https://github.com/mabroor007/do_dis-app/blob/master/addtask_dodis.png" width="400px" height="auto" />
+<img src="https://github.com/mabroor007/do_dis-app/blob/master/addtask-dodis.png" width="400px" height="auto" />
 
 #### Task Pending
 
